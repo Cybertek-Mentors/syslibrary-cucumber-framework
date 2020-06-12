@@ -70,7 +70,7 @@
                     <parallel>methods</parallel>
                     <threadCount>3</threadCount>
                     <perCoreThreadCount>false</perCoreThreadCount>
-                    <forkCount>perthread</forkCount>
+                    <forkMode>perthread</forkMode>
                 </configuration>
             </plugin>
             <plugin>
