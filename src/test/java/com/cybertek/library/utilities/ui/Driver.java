@@ -118,7 +118,7 @@ public class Driver {
                     }
                 case "browser-stack-chrome":
                     try {
-                        URL url = new URL(GRID_URL);
+                        URL url = new URL(URL);
                         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
                         desiredCapabilities.setCapability("browser", "Chrome");
                         desiredCapabilities.setCapability("browser_version", "83.0");
@@ -133,7 +133,7 @@ public class Driver {
                     break;
                 case "browser-stack-android":
                     try {
-                        URL url = new URL(GRID_URL);
+                        URL url = new URL(URL);
                         DesiredCapabilities caps = new DesiredCapabilities();
                         caps.setCapability("browserName", "android");
                         caps.setCapability("device", "Samsung Galaxy S20");
