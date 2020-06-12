@@ -12,6 +12,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
@@ -22,6 +23,9 @@ import java.net.URL;
 
 public class Driver {
     private static final String GRID_URL = "http://100.26.171.118:4444/wd/hub";
+    public static final String USERNAME = "vasylfomiuk1";
+    public static final String AUTOMATE_KEY = "shPeppvXmzdSTZqAZH3f";
+    public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
     private Driver() {
     }
 
@@ -111,6 +115,21 @@ public class Driver {
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
+                case "browser-stack-chrome":
+                    try {
+                        URL url = new URL(GRID_URL);
+                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                        desiredCapabilities.setCapability("browser", "Chrome");
+                        desiredCapabilities.setCapability("browser_version", "83.0");
+                        desiredCapabilities.setCapability("os", "Windows");
+                        desiredCapabilities.setCapability("os_version", "10");
+                        desiredCapabilities.setCapability("resolution", "1920x1080");
+                        desiredCapabilities.setCapability("name", "Library Automation");
+                        driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
             }
         }
         return driverPool.get();
