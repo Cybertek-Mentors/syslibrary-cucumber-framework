@@ -21,13 +21,14 @@ import java.net.URL;
 
 
 public class Driver {
+    private static final String GRID_URL = "http://100.26.171.118:4444/wd/hub";
     private Driver() {
     }
 
     private static ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
 
 
-    public static WebDriver getDriver() {
+    public static synchronized WebDriver getDriver() {
         if (driverPool.get() == null) {
 
             // check the command line argument browser. if it has value, use that value
@@ -77,7 +78,7 @@ public class Driver {
 
                 case "remote-chrome":
                     try {
-                        URL url = new URL("http://3.86.148.247:4444/wd/hub");
+                        URL url = new URL(GRID_URL);
                         ChromeOptions chromeOptions = new ChromeOptions();
                         driverPool.set(new RemoteWebDriver(url, chromeOptions));
                     } catch (MalformedURLException e) {
@@ -86,7 +87,7 @@ public class Driver {
                     break;
                 case "remote-firefox-linux":
                     try {
-                        URL url = new URL("http://3.86.148.247:4444/wd/hub");
+                        URL url = new URL(GRID_URL);
                         FirefoxOptions firefoxOptions = new FirefoxOptions();
                         firefoxOptions.setCapability("platform", Platform.LINUX);
                         driverPool.set(new RemoteWebDriver(url, firefoxOptions));
@@ -95,7 +96,7 @@ public class Driver {
                     }
                 case "remote-firefox-win":
                     try {
-                        URL url = new URL("http://3.86.148.247:4444/wd/hub");
+                        URL url = new URL(GRID_URL);
                         FirefoxOptions firefoxOptions = new FirefoxOptions();
                         firefoxOptions.setCapability("versopm", "asd");
                         driverPool.set(new RemoteWebDriver(url, firefoxOptions));
@@ -104,7 +105,7 @@ public class Driver {
                     }
                 case "remote-safari":
                     try {
-                        URL url = new URL("http://3.86.148.247:4444/wd/hub");
+                        URL url = new URL(GRID_URL);
                         SafariOptions s = new SafariOptions();
                         driverPool.set(new RemoteWebDriver(url, s));
                     } catch (MalformedURLException e) {
