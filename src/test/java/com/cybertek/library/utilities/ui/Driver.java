@@ -26,6 +26,7 @@ public class Driver {
     public static final String USERNAME = "vasylfomiuk1";
     public static final String AUTOMATE_KEY = "shPeppvXmzdSTZqAZH3f";
     public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
+
     private Driver() {
     }
 
@@ -126,6 +127,20 @@ public class Driver {
                         desiredCapabilities.setCapability("resolution", "1920x1080");
                         desiredCapabilities.setCapability("name", "Library Automation");
                         driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "browser-stack-android":
+                    try {
+                        URL url = new URL(GRID_URL);
+                        DesiredCapabilities caps = new DesiredCapabilities();
+                        caps.setCapability("browserName", "android");
+                        caps.setCapability("device", "Samsung Galaxy S20");
+                        caps.setCapability("realMobile", "true");
+                        caps.setCapability("os_version", "10.0");
+                        caps.setCapability("name", "Library Automation");
+                        driverPool.set(new RemoteWebDriver(url, caps));
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
