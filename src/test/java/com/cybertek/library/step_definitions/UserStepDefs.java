@@ -106,6 +106,8 @@ public class UserStepDefs extends BaseStep {
         int actualCount = pages.usersPage().allRows.size();
         Assert.assertEquals(expectedCount, actualCount);
 
+        String str = "Hello";
+
     }
 
 }
